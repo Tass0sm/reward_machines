@@ -1,5 +1,5 @@
-from reward_machines.reward_functions import *
-from reward_machines.reward_machine_utils import evaluate_dnf, value_iteration
+from reward_machines.reward_machines.reward_functions import *
+from reward_machines.reward_machines.reward_machine_utils import evaluate_dnf, value_iteration
 import time
 
 class RewardMachine:

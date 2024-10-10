@@ -1,10 +1,15 @@
-import gym, random
-from gym import spaces
+import gymnasium as gym
+from gymnasium import spaces
+
+import random
 import numpy as np
-from reward_machines.rm_environment import RewardMachineEnv
-from envs.grids.craft_world import CraftWorld
-from envs.grids.office_world import OfficeWorld
-from envs.grids.value_iteration import value_iteration
+from reward_machines.reward_machines.rm_environment import RewardMachineEnv
+from reward_machines.envs.grids.craft_world import CraftWorld
+from reward_machines.envs.grids.office_world import OfficeWorld
+from reward_machines.envs.grids.value_iteration import value_iteration
+
+from ..get_reward_machine import get_reward_machine
+
 
 class GridEnv(gym.Env):
     def __init__(self, env):
@@ -35,6 +40,8 @@ class GridEnv(gym.Env):
         return self.env.get_model()
 
 class GridRMEnv(RewardMachineEnv):
+    metadata = {}
+
     def __init__(self, env, rm_files):
         super().__init__(env, rm_files)
 
@@ -116,13 +123,13 @@ class GridRMEnv(RewardMachineEnv):
 
 class OfficeRMEnv(GridRMEnv):
     def __init__(self):
-        rm_files = ["./envs/grids/reward_machines/office/t%d.txt"%i for i in range(1,5)]
+        rm_files = [get_reward_machine("grids/reward_machines/office/t%d.txt"%i) for i in range(1,5)]
         env = OfficeWorld()
-        super().__init__(GridEnv(env),rm_files)
+        super().__init__(GridEnv(env), rm_files)
 
 class OfficeRM3Env(GridRMEnv):
     def __init__(self):
-        rm_files = ["./envs/grids/reward_machines/office/t3.txt"]
+        rm_files = [get_reward_machine("grids/reward_machines/office/t3.txt")]
         env = OfficeWorld()
         super().__init__(GridEnv(env),rm_files)
 

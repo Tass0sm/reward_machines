@@ -11,10 +11,10 @@ Notes:
     - Rewards coming from the environment are ignored.
 """
 
-import gym
-from gym import spaces
+import gymnasium as gym
+from gymnasium import spaces
 import numpy as np
-from reward_machines.reward_machine import RewardMachine
+from reward_machines.reward_machines.reward_machine import RewardMachine
 
 
 class RewardMachineEnv(gym.Wrapper):

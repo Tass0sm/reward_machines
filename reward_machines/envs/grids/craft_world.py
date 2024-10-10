@@ -1,4 +1,4 @@
-from envs.grids.game_objects import *
+from reward_machines.envs.grids.game_objects import *
 import random, math, os
 import numpy as np
 
